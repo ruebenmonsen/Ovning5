@@ -1,12 +1,13 @@
-﻿using System;
+﻿using MainProject.Vehicles;
+using System;
+using System.Collections.Generic;
 
-namespace Garage
+namespace MainProject
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
         }
     }
 }
