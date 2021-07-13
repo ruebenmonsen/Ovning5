@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MainProject.Vehicles
 {
-    class Bus : Vehicle
+    public class Bus : Vehicle
     {
         private bool articulated;
 

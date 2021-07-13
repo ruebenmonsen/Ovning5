@@ -8,11 +8,10 @@ namespace MainProject
 {
     public interface IVehicle
     {
-        string Color { get; }
-        string Identifier { get; }
-        string CountryOfOrigin { get; }
-        string Manufacturer { get; }
-        int ModelYear { get; }
-        int ServiceWeight { get; }
+        string Color { get; set; }
+        string Identifier { get; set; }
+        string CountryOfOrigin { get; set; }
+        string Manufacturer { get; set; }
+        int ModelYear { get; set; }
     }
 }

@@ -18,11 +18,9 @@ namespace MainProject.Vehicles
             get { return identifier; }
             set { identifier = value; }
         }
-        public string Color => throw new NotImplementedException();
+        public virtual string Color { get; set; }
         public virtual string CountryOfOrigin { get; set; }
         public virtual string Manufacturer { get; set; }
         public virtual int ModelYear { get; set; }
-        public virtual int ServiceWeight { get; set; }
-
     }
 }

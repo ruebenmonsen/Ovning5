@@ -37,7 +37,7 @@ namespace MainProject
         {
             yield return (T)Vehicles.GetEnumerator();
         }
-        IEnumerator IEnumerable.GetEnumerator() // explicit interface implementation
+        IEnumerator IEnumerable.GetEnumerator()
         {
             foreach (var item in Vehicles)
             {
@@ -53,7 +53,6 @@ namespace MainProject
             var dict = new Dictionary<string, int>();
             foreach (var vehicle in Vehicles)
             {
-                // fix this
                 if (dict.ContainsKey(TypeToString(vehicle))) dict[TypeToString(vehicle)]++;
                 else dict.Add(TypeToString(vehicle), 1);
             };
@@ -63,7 +62,7 @@ namespace MainProject
         {
             return vehicle.GetType().Name.ToString();
         }
-        public bool ParkCar(IVehicle vehicle)
+        public bool ParkVehicle(IVehicle vehicle)
         {
             var success = false;
             for (int i = 0; i < Vehicles.Length; i++)
@@ -77,7 +76,7 @@ namespace MainProject
             return success;
             
         }
-        public bool RemoveCar(IVehicle vehicle)
+        public bool RemoveVehicle(IVehicle vehicle)
         {
             var success = false;
             for (int i = 0; i < Vehicles.Length; i++)
@@ -103,6 +102,11 @@ namespace MainProject
             }
             return null;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
         public List<IVehicle> SearchVehicles(params string[] criteria)
         {
             var list = new List<IVehicle>();
@@ -110,6 +114,7 @@ namespace MainProject
             {
                 foreach (var criterion in criteria)
                 {
+                    // TODO: Implement this
                 }
             }
             return list;

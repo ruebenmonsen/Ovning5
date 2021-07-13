@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MainProject.Vehicles
 {
-    class Airplane : Vehicle
+    public class Airplane : Vehicle
     {
         private int wingspan;
 
