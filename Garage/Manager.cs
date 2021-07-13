@@ -69,56 +69,91 @@ namespace MainProject
                 switch (choice)
                 {
                     case '1':
+                        ShowParkedCars(garage);
                         break;
                     case '2':
+                        var dict = garage.GetVehicleTypes();
+                        foreach (var item in dict)
+                        {
+                            ui.Print($"{item.Key}: {item.Value}");
+                        }
                         break;
                     case '3':
-                        VehicleCreationMenu();
+                        VehicleCreationMenu(garage);
                         break;
                     case '4':
                         break;
                     case '5':
+                        ui.Print("What is the identifier of the vehicle?");
+                        string identifier = ui.GetString();
+                        var vehicle = garage.FindVehicle(identifier);
+                        if (vehicle != null) ui.Print(vehicle.ToString());
+                        else ui.Print("The car was not found.");
                         break;
                     case '6':
                         break;
                     case '0':
                         break;
                     default:
-                        ui.Print("Please enter valid input.");
+                        ui.Print("\nPlease enter valid input.");
                         break;
                 }
             } while (choice != '0');
         }
 
-        private void VehicleCreationMenu()
+        private void ShowParkedCars(Garage<IVehicle> garage)
         {
-            ui.Print("1. Airplane" +
-                "\n2. Boat" +
-                "\n3. Bus" +
-                "\n4. Car" +
-                "\n5. Motorcycle" +
-                "\n0. Return to previous menu");
-            var choice = (char)ui.GetKey();
-            ui.Print("Please specify the identifier of your vehicle");
-            var givenVehicleId = ui.GetString();
+            foreach (var vehicle in garage.GetParkedVehicles())
+            {
+                if (vehicle != null)
+                    ui.Print($"\nA(n) {vehicle.GetType().Name} with identifier {vehicle.Identifier} is parked.");
+            }
+        }
+
+        private void VehicleCreationMenu(Garage<IVehicle> garage)
+        {
+            char choice;
+            string givenVehicleId;
+            bool success = false;
+            ui.Print("\n1. Airplane" +
+            "\n2. Boat" +
+            "\n3. Bus" +
+            "\n4. Car" +
+            "\n5. Motorcycle" +
+            "\n0. Return to previous menu");
+            choice = (char)ui.GetKey();
+            ui.Print("\nPlease specify the identifier of your vehicle");
+            givenVehicleId = ui.GetString();
             switch (choice)
             {
                 case '1':
                     var airplane = new Airplane(givenVehicleId);
+                    success = garage.ParkVehicle(airplane, givenVehicleId);
                     break;
                 case '2':
+                    var boat = new Boat(givenVehicleId);
+                    success = garage.ParkVehicle(boat, givenVehicleId);
                     break;
                 case '3':
+                    var bus = new Bus(givenVehicleId);
+                    success = garage.ParkVehicle(bus, givenVehicleId);
                     break;
                 case '4':
+                    var car = new Car(givenVehicleId);
+                    success = garage.ParkVehicle(car, givenVehicleId);
                     break;
                 case '5':
+                    var motorcycle = new Motorcycle(givenVehicleId);
+                    success = garage.ParkVehicle(motorcycle, givenVehicleId);
                     break;
                 case '0':
                     break;
                 default:
+                    ui.Print("\nPlease enter valid input.");
                     break;
             }
+            if (success) ui.Print("You succesfully added the vehicle to the garage.");
+            else ui.Print("The car was not added to the garage.");
 
         }
 

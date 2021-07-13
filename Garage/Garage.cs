@@ -60,10 +60,14 @@ namespace MainProject
         }
         public string TypeToString(IVehicle vehicle)
         {
-            return vehicle.GetType().Name.ToString();
+            return vehicle?.GetType().Name.ToString();
         }
-        public bool ParkVehicle(IVehicle vehicle)
+        public bool ParkVehicle(IVehicle vehicle, string identifier)
         {
+            foreach (var vehicleItem in Vehicles)
+            {
+                if (vehicleItem?.Identifier.ToLower() == identifier.ToLower()) return false;
+            }
             var success = false;
             for (int i = 0; i < Vehicles.Length; i++)
             {
@@ -71,6 +75,7 @@ namespace MainProject
                 {
                     success = true;
                     Vehicles[i] = vehicle;
+                    return success;
                 }
             }
             return success;
